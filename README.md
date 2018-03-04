@@ -13,7 +13,7 @@ https://hub.docker.com/u/gentoo/
 
 ## Inventory
 
-* orchard (current orchardos release, orchardos-<arch>-musl-hardened)
+* orchard (current orchardos release, orchardos-``<arch>``-musl-hardened)
   * orchard-amd64
   * orchard-x86
 * stage4 (bluedragon, desktop-amd64-musl-hardened)
@@ -34,7 +34,7 @@ The container being built is defined by the TARGET environment variable:
 
 `` TARGET=stage3-amd64 ./build.sh ``
 
-where TARGET=<dockerfile-no-ext>-<arch>
+where TARGET=``<dockerfile-no-ext>-<arch>``
 
 The build.sh script is just a wrapper to provide some default variables and
 allow both amd64 and i686 arches from upstream (initial testing has been
