@@ -47,7 +47,7 @@ with amd64 but should also work with x86/i686).
 
 To bypass the build.sh script, you might use a command something like this:
 
-`` docker build --build-arg ARCH="amd64" --build-arg VERSION="20180304" --build-arg MICROARCH="amd64" --build-arg BOOTSTRAP="multiarch/alpine:x86-v3.7"  -t "orchard/test-amd64:20180304" -f test.Dockerfile . ``
+`` docker build --build-arg ARCH="amd64" --build-arg VERSION="20180304" --build-arg MICROARCH="amd64" --build-arg BOOTSTRAP="multiarch/alpine:x86-v3.7"  -t "orchard/orchardos-amd64:20180304" -f orchardos.Dockerfile . ``
 
 # Using login credentials for releases.orchardos.com
 
