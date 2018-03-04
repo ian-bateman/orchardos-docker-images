@@ -11,7 +11,7 @@
 ARG BOOTSTRAP
 FROM ${BOOTSTRAP:-alpine:3.7} as builder
 
-WORKDIR /orchard
+WORKDIR /gentoo
 
 ARG ARCH=amd64
 ARG MICROARCH=amd64
@@ -40,5 +40,5 @@ RUN echo "Building GRS Container image for ${MICROARCH} ${FLAVOR} fetching from 
 FROM scratch
 
 WORKDIR /
-COPY --from=builder /orchard/ /
+COPY --from=builder /gentoo/ /
 CMD ["/bin/bash"]

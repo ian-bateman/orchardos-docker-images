@@ -32,9 +32,14 @@ https://hub.docker.com/u/gentoo/
 The containers are created using a multi-stage build, which requires docker-17.05.0 or later.
 The container being built is defined by the TARGET environment variable:
 
-`` TARGET=stage3-amd64 ./build.sh ``
+`` TARGET=orchardos-amd64 ./build.sh ``
 
 where TARGET=``<dockerfile-no-ext>-<arch>``
+
+Note the ORG variable is used in both docker commands in build.sh so in	order
+to build the Gentoo/GRS	images you need	to pass	ORG=gentoo like so:
+
+`` ORG=gentoo TARGET=stage4-amd64 ./build.sh ``
 
 The build.sh script is just a wrapper to provide some default variables and
 allow both amd64 and i686 arches from upstream (initial testing has been
