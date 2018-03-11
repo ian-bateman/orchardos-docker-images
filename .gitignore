@@ -6,3 +6,5 @@
 *.swp
 busybox-x86_64
 busybox
+.netrc
+potion-proxy-amd64-20180311.tar.gz

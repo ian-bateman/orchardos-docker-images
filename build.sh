@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Used to create Gentoo stage3 and portage containers simply by specifying a 
+# Used to create Gentoo stage3 and portage containers simply by specifying a
 # TARGET env variable.
 # Example usage: TARGET=stage3-amd64 ./build.sh
 
@@ -43,5 +43,5 @@ if [[ -n "${SUFFIX}" ]]; then
 	SUFFIX="-${SUFFIX}"
 fi
 
-docker build --build-arg VERSION="${VERSION}" --build-arg ARCH="${ARCH}" --build-arg MICROARCH="${MICROARCH}" --build-arg BOOTSTRAP="${BOOTSTRAP}" --build-arg FLAVOR="${FLAVOR}" --build-arg SUFFIX="${SUFFIX}"  -t "${ORG}/${TARGET}:${VERSION}" -f "${NAME}.Dockerfile" .
+docker build --build-arg VERSION="${VERSION}" --build-arg ARCH="${ARCH}" --build-arg MICROARCH="${MICROARCH}" --build-arg BOOTSTRAP="${BOOTSTRAP}" --build-arg FLAVOR="${FLAVOR}" --build-arg SUFFIX="${SUFFIX}" -t "${ORG}/${TARGET}:${VERSION}" -f "${NAME}.Dockerfile" .
 docker tag "${ORG}/${TARGET}:${VERSION}" "${ORG}/${TARGET}:latest"
