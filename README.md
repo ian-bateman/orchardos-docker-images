@@ -32,14 +32,18 @@ https://hub.docker.com/u/gentoo/
 The containers are created using a multi-stage build, which requires docker-17.05.0 or later.
 The container being built is defined by the TARGET environment variable:
 
-`` TARGET=orchardos-amd64 ./build.sh ``
+```sh
+TARGET=orchardos-amd64 ./build.sh
+```
 
 where TARGET=``<dockerfile-no-ext>-<arch>``
 
 Note the ORG variable is used in both docker commands in build.sh so in	order
 to build the Gentoo/GRS	images you need	to pass	ORG=gentoo like so:
 
-`` ORG=gentoo TARGET=stage4-amd64 ./build.sh ``
+```sh
+ORG=gentoo TARGET=stage4-amd64 ./build.sh
+```
 
 The build.sh script is just a wrapper to provide some default variables and
 allow both amd64 and i686 arches from upstream (initial testing has been
@@ -47,7 +51,9 @@ with amd64 but should also work with x86/i686).
 
 To bypass the build.sh script, you might use a command something like this:
 
-`` docker build --build-arg ARCH="amd64" --build-arg VERSION="20180304" --build-arg MICROARCH="amd64" --build-arg BOOTSTRAP="multiarch/alpine:x86-v3.7"  -t "orchard/orchardos-amd64:20180304" -f orchardos.Dockerfile . ``
+```sh
+docker build --build-arg ARCH="amd64" --build-arg VERSION="20180304" --build-arg MICROARCH="amd64" --build-arg BOOTSTRAP="multiarch/alpine:x86-v3.7"  -t "orchard/orchardos-amd64:20180304" -f orchardos.Dockerfile .
+```
 
 # Using login credentials for releases.orchardos.com
 
@@ -61,7 +67,9 @@ it works passing --user and --password on the commandline to wget, a slightly
 better way is to create a .netrc file in the working directory with proper
 login ID and hostname with this format:
 
-`` machine releases.orchardos.com login <orchard-username> password <orchard-password> ``
+```sh
+machine releases.orchardos.com login <orchard-username> password <orchard-password>
+```
 
 The docker build environment is docker-ized (of course) but it starts by looking
 in the current directory (ie, where the docker file lives) and will copy the
@@ -75,7 +83,7 @@ https://github.com/teamorchard/docs/wiki/docker-build
 
 # Using the portage container as a data volume
 
-```
+```sh
 docker create -v /usr/portage --name myportagesnapshot gentoo/portage:latest /bin/true
 docker run --volumes-from myportagesnapshot gentoo/stage3-amd64:latest /bin/bash
 ```
@@ -86,7 +94,7 @@ docker-17.05.0 or later supports multi-stage builds, allowing the portage volume
 
 Example _Dockerfile_
 
-```
+```sh
 # name the portage image
 FROM gentoo/portage:latest as portage
 

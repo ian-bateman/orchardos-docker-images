@@ -23,10 +23,12 @@ COPY .netrc /root/.netrc
 RUN echo "Building GRS Container image for ${MICROARCH} ${FLAVOR} fetching from ${DIST}"
 RUN apk --no-cache add gnupg tar wget xz
 ENV STAGE4 "orchardos-${MICROARCH}-musl-${FLAVOR}-${VERSION}.tar.xz"
+RUN echo "${DIST}/${STAGE4}"
 RUN wget -q "${DIST}/${STAGE4}" "${DIST}/${STAGE4}.DIGESTS"
 RUN awk '/# SHA512 HASH/{getline; print}' ${STAGE4}.DIGESTS | sha512sum -c
 RUN apk --no-cache add libarchive-tools
 RUN bsdtar xpf "${STAGE4}" --xattrs --numeric-owner
+RUN echo "untar successful"
 RUN sed -i -e 's/#rc_sys=""/rc_sys="docker"/g' etc/rc.conf
 RUN echo 'UTC' > etc/timezone
 RUN rm ${STAGE4}.DIGESTS ${STAGE4}
