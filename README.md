@@ -128,3 +128,28 @@ methods:
   * Body–why this commit is necessary or desired
 * Pull requests should not include merge commits
 * Use amend and rebase to fix commits after a pull request has been submitted
+
+## Pushing to GCR docker registry
+
+You should authenticate with gcloud:
+
+```sh
+gcloud auth configure-docker
+```
+
+Then you can tag an image and push it:
+
+```
+docker tag orchard/orchardos-amd64:20180506 gcr.io/orchardstaging/orchardos-amd64:20180506
+docker tag orchard/orchardos-amd64:20180506 gcr.io/orchardstaging/orchardos-amd64:latest
+docker push gcr.io/orchardstaging/orchardos-amd64:20180506
+docker push gcr.io/orchardstaging/orchardos-amd64:latest
+```
+
+## Building potion proxy dockerfile
+
+```
+docker build -t orchard/orchardos-amd64-potionproxy:latest -f orchardos-potionproxy.Dockerfile .
+docker tag orchard/orchardos-amd64-potionproxy:latest gcr.io/orchardstaging/orchardos-amd64-potionproxy:latest
+docker push gcr.io/orchardstaging/orchardos-amd64-potionproxy:latest
+```
